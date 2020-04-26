@@ -1,0 +1,19 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+spring:
+  application:
+    name: service-zuul
+
+#配置网关路由
+zuul:
+  routes:
+    api-a: #/api-ribbon/.. 请求转发到service-ribbon服务器
+      path: /api-ribbon/**
+      serviceId: service-ribbon
+    api-b: #/api-fegin/**  请求转发到service-fegin服务器
+      path: /api-feign/**
+      serviceId: service-feign
